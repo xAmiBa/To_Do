@@ -1,7 +1,18 @@
 
-
 todo_list = [] 
+#add list to todo_list temporary variable so next time when program run it reads
+#stored list
+
+file = open('todos.txt', 'r')
+todo_list_open = file.readlines() #update from the file
+file.close()
+   
+for item in todo_list_open:
+    item = item.replace("\n", "")
+    todo_list.append(item)
+
 box = "[ ] "
+
 def print_numbered_list():
     for index, item in enumerate(todo_list, 1):
         item = item.replace("\n", "")
@@ -56,8 +67,9 @@ while True:
 
             #print file
             print_list()
-#FIXME: 
-#TODO: Make it working with file!
+
+#FIXME: new run, new list?!
+
         case "complete":
             print_numbered_list()
             complete_choice = input("Which todo would you like to complete? Number: ")
@@ -69,10 +81,22 @@ while True:
                     item = item.replace("[ ] ", "[x] ")
                     complete_choice = int(complete_choice)
                     todo_list[complete_choice - 1] = item  #update on the list
-                    print(item)
+            
+            #clear the txt file
+            with open("todos.txt",'w') as file:
+                pass
+
+            #write new todo_list again in the file
+            file = open('todos.txt', 'w')  #update in the file
+                        
+            for item in todo_list:
+                file.writelines(f"{item}\n")
+            file.close()
+
+            #print file
+            print_list()
 
 #TODO: move completed task to the end?
-#TODO: Make it working with file!
 
         case "exit":
             cleanup_list = input("Would you like to clean up your list? yes/no: ")
@@ -82,8 +106,19 @@ while True:
                     if "[x]" in item:
                         todo_list.remove(item)
             
+            #clear the txt file
+            with open("todos.txt",'w') as file:
+                pass
+
+            #write new todo_list again in the file
+            file = open('todos.txt', 'w')  #update in the file
+                        
             for item in todo_list:
-                print(item)
+                file.writelines(f"{item}\n")
+            file.close()
+
+            #print file
+            print_list()
 
             break
 
