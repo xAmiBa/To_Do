@@ -82,27 +82,36 @@ while True:
         print_numbered_list()
         complete_choice = input("Which todo would you like to complete? Number: ")
         
-        for index, item in enumerate(todo_list, 1):
-            if index != int(complete_choice):
-                print(item)
-            else:
-                item = item.replace("[ ] ", "[x] ")
-                complete_choice = int(complete_choice)
-                todo_list[complete_choice - 1] = item  #update on the list
-        
-        #clear the txt file
-        with open("todos.txt",'w') as file:
-            pass
+        #check if user input is an integer
+        is_integer = complete_choice.isnumeric()
 
-        #write new todo_list again in the file
-        file = open('todos.txt', 'w')  #update in the file
-                    
-        for item in todo_list:
-            file.writelines(f"{item}\n")
-        file.close()
+#FIXME: What if user will input too big number?
 
-        #print file
-        print_list()
+        if is_integer == True:
+            for index, item in enumerate(todo_list, 1):
+                if index != int(complete_choice):
+                    print(item)
+                else:
+                    item = item.replace("[ ] ", "[x] ")
+                    complete_choice = int(complete_choice)
+                    todo_list[complete_choice - 1] = item  #update on the list
+            
+            #clear the txt file
+            with open("todos.txt",'w') as file:
+                pass
+
+            #write new todo_list again in the file
+            file = open('todos.txt', 'w')  #update in the file
+                        
+            for item in todo_list:
+                file.writelines(f"{item}\n")
+            file.close()
+
+            #print file
+            print_list()
+
+        else:
+            print("Command not valid. Please type a number.")
 
 #TODO: move completed task to the end?
 
