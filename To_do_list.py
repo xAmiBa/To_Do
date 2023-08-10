@@ -30,6 +30,16 @@ def print_list():
         item = item.replace("\n", "")
         print(item) 
 
+def reset_txt_list():
+    #clear the txt file
+    with open("todos.txt",'w') as file:
+        pass
+    #write new todo_list again in the file
+    file = open('todos.txt', 'w')  #update in the file    
+    for item in todo_list:
+        file.writelines(f"{item}\n")
+    file.close()
+
 while True:
     #TODO: add better formated menu: name of list, menu of options
     #TODO: option to choose the list?
@@ -78,16 +88,7 @@ while True:
                     replace_item = replace_item.upper()
                     todo_list[choice_edit] = todo_list[choice_edit][:4] + replace_item  #update on the list
 
-                    #clear the txt file
-                    with open("todos.txt",'w') as file:
-                        pass
-
-                    #write new todo_list again in the file
-                    file = open('todos.txt', 'w')  #update in the file
-                            
-                    for item in todo_list:
-                        file.writelines(f"{item}\n")
-                    file.close()
+                    reset_txt_list()
 
                     #print file
                     print_list()
@@ -107,8 +108,6 @@ while True:
         complete_is_integer = complete_choice.isnumeric()
         count = 0  #reset count variable after other commands like edit
 
-#FIXME: What if user will input too big number?
-
         if complete_is_integer == True:
             #number of lines in the file
             with open ("todos.txt", "r") as file:
@@ -127,16 +126,7 @@ while True:
                         complete_choice = int(complete_choice)
                         todo_list[complete_choice - 1] = item  #update on the list
                 
-                #clear the txt file
-                with open("todos.txt",'w') as file:
-                    pass
-
-                #write new todo_list again in the file
-                file = open('todos.txt', 'w')  #update in the file
-                            
-                for item in todo_list:
-                    file.writelines(f"{item}\n")
-                file.close()
+                reset_txt_list()
 
                 #print file
                 print_list()
@@ -157,16 +147,7 @@ while True:
                 if "[x]" in item:
                     todo_list.remove(item)
         
-        #clear the txt file
-        with open("todos.txt",'w') as file:
-            pass
-
-        #write new todo_list again in the file
-        file = open('todos.txt', 'w')  #update in the file
-                    
-        for item in todo_list:
-            file.writelines(f"{item}\n")
-        file.close()
+        reset_txt_list()
 
         #print file
         print_list()
