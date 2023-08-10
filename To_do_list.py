@@ -1,5 +1,6 @@
 
 #TODO: list comprehension improvement
+#FIXME: when list prints add enter after so it's more user freindly
 
 todo_list = [] 
 #add list to todo_list temporary variable so next time when program run it reads
@@ -30,7 +31,7 @@ def print_list():
         print(item) 
 
 while True:
-    #TODO: add better formated menu
+    #TODO: add better formated menu: name of list, menu of options
     #TODO: option to choose the list?
     user_choice = input("Type add, show, edit, complete or exit: ")
     
@@ -59,66 +60,99 @@ while True:
 
             #user choose which item
             choice_edit = input("Which item would you like to edit? Number: ")
-            choice_edit = int(choice_edit) - 1
-            replace_item = input(f"You are editing \"{todo_list[choice_edit]}\". New version: ")
-            replace_item = replace_item.upper()
-            todo_list[choice_edit] = todo_list[choice_edit][:4] + replace_item  #update on the list
 
-            #clear the txt file
-            with open("todos.txt",'w') as file:
-                pass
+            #check if user input is an integer
+            edit_is_integer = choice_edit.isnumeric()
+            #count = 0
 
-            #write new todo_list again in the file
-            file = open('todos.txt', 'w')  #update in the file
-                        
-            for item in todo_list:
-                file.writelines(f"{item}\n")
-            file.close()
+            if edit_is_integer == True:
+                #number of lines in the file
+                with open ("todos.txt", "r") as file:
+                    for count, line in enumerate(file):
+                        pass
 
-            #print file
-            print_list()
+                choice_edit = int(choice_edit) - 1
+
+                if choice_edit >= 0 and choice_edit <= count:
+                    replace_item = input(f"You are editing \"{todo_list[choice_edit]}\". New version: ")
+                    replace_item = replace_item.upper()
+                    todo_list[choice_edit] = todo_list[choice_edit][:4] + replace_item  #update on the list
+
+                    #clear the txt file
+                    with open("todos.txt",'w') as file:
+                        pass
+
+                    #write new todo_list again in the file
+                    file = open('todos.txt', 'w')  #update in the file
+                            
+                    for item in todo_list:
+                        file.writelines(f"{item}\n")
+                    file.close()
+
+                    #print file
+                    print_list()
+
+                else:  #else if user input number is not correct, less than 1 or more than tosos available
+                    print(f"Number is not correct. Type any number between 1 and {count + 1}.")
+
+            else:  #else if user input is not number
+                print("Command not valid. Please type a number.")
+
 
     elif user_choice.startswith("complete"):
         print_numbered_list()
         complete_choice = input("Which todo would you like to complete? Number: ")
         
         #check if user input is an integer
-        is_integer = complete_choice.isnumeric()
+        complete_is_integer = complete_choice.isnumeric()
+        count = 0  #reset count variable after other commands like edit
 
 #FIXME: What if user will input too big number?
 
-        if is_integer == True:
-            for index, item in enumerate(todo_list, 1):
-                if index != int(complete_choice):
-                    print(item)
-                else:
-                    item = item.replace("[ ] ", "[x] ")
-                    complete_choice = int(complete_choice)
-                    todo_list[complete_choice - 1] = item  #update on the list
+        if complete_is_integer == True:
+            #number of lines in the file
+            with open ("todos.txt", "r") as file:
+                for count, line in enumerate(file):
+                    pass
+
+            complete_choice = int(complete_choice) #change to int before comparsion operator 
             
-            #clear the txt file
-            with open("todos.txt",'w') as file:
-                pass
 
-            #write new todo_list again in the file
-            file = open('todos.txt', 'w')  #update in the file
-                        
-            for item in todo_list:
-                file.writelines(f"{item}\n")
-            file.close()
+            if complete_choice > 0 and complete_choice <= count + 1:
+                for index, item in enumerate(todo_list, 1):
+                    if index != int(complete_choice):
+                        pass
+                    else:
+                        item = item.replace("[ ] ", "[x] ")
+                        complete_choice = int(complete_choice)
+                        todo_list[complete_choice - 1] = item  #update on the list
+                
+                #clear the txt file
+                with open("todos.txt",'w') as file:
+                    pass
 
-            #print file
-            print_list()
+                #write new todo_list again in the file
+                file = open('todos.txt', 'w')  #update in the file
+                            
+                for item in todo_list:
+                    file.writelines(f"{item}\n")
+                file.close()
 
-        else:
+                #print file
+                print_list()
+
+            else:  #else if user input number is not correct, less than 1 or more than tosos available
+                print(f"Number is not correct. Type any number between 1 and {count + 1}.")
+
+        else:  #else if user input is not number
             print("Command not valid. Please type a number.")
 
 #TODO: move completed task to the end?
 
     elif user_choice.startswith("exit"):
-        cleanup_list = input("Would you like to clean up your list? yes/no: ")
+        cleanup_list = input("Would you like to clean up your list? y/n: ")
 
-        if cleanup_list == "yes":
+        if cleanup_list == "y":
             for item in todo_list:
                 if "[x]" in item:
                     todo_list.remove(item)
