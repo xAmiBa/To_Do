@@ -1,6 +1,5 @@
 
 #TODO: list comprehension improvement
-#FIXME: when list prints add enter after so it's more user freindly
 
 todo_list = [] 
 #add list to todo_list temporary variable so next time when program run it reads
@@ -26,8 +25,8 @@ def print_list():
     file = open('todos.txt', 'r')
     todo_list = file.readlines() #update from the file
     file.close()
-    
-    print("MY TODO LIST:")
+
+    print("\nMY TODO LIST:")
     for item in todo_list:
         item = item.replace("\n", "")
         print(item) 
@@ -43,10 +42,13 @@ def reset_txt_list():
         file.writelines(f"{item}\n")
     file.close()
 
+#welcome message and menu    
+print("Welcome in todo list program!\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* exit\n")
+
 while True:
     #TODO: add better formated menu: name of list, menu of options
     #TODO: option to choose the list? next lesson
-    user_choice = input("Type add, show, edit, complete or exit: ")
+    user_choice = input("Type the command: ")
     
     if user_choice.startswith("add"):
         if user_choice[4:] != "":
@@ -156,6 +158,9 @@ while True:
         print_list()
 
         break
+
+    elif user_choice.startswith("menu"):
+        print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* exit\n")
 
     else:
         print("Command is not valid!")
