@@ -20,15 +20,18 @@ def print_numbered_list():
     for index, item in enumerate(todo_list, 1):
         item = item.replace("\n", "")
         print(f"({index})  {item}")
+    print("")
 
 def print_list():
     file = open('todos.txt', 'r')
     todo_list = file.readlines() #update from the file
     file.close()
-   
+    
+    print("MY TODO LIST:")
     for item in todo_list:
         item = item.replace("\n", "")
         print(item) 
+    print("")
 
 def reset_txt_list():
     #clear the txt file
@@ -42,7 +45,7 @@ def reset_txt_list():
 
 while True:
     #TODO: add better formated menu: name of list, menu of options
-    #TODO: option to choose the list?
+    #TODO: option to choose the list? next lesson
     user_choice = input("Type add, show, edit, complete or exit: ")
     
     if user_choice.startswith("add"):
