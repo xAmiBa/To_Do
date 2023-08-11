@@ -2,19 +2,32 @@
 #TODO: list comprehension improvement
 
 todo_list = [] 
+box = "[ ] "
 #add list to todo_list temporary variable so next time when program run it reads
 #stored list
 
-file = open('todos.txt', 'r')
-todo_list_open = file.readlines() #update from the file
-file.close()
-   
-for item in todo_list_open:
-    item = item.replace("\n", "")
-    todo_list.append(item)
+#Fucntion: read todo list from txt file and formats it removing empty lines
+def read_todo_list():
+    with open('todos.txt', 'r') as file:
+        todo_list_open = file.readlines() #update from the file
 
-box = "[ ] "
+    for item in todo_list_open:
+        item = item.replace("\n", "")
+        todo_list.append(item)
 
+    file.close()  
+
+#Function: list from variable 
+def write_todo_list():
+    file = open('todos.txt', 'w')  #update in the file
+    for item in todo_list:
+        file.writelines(f"{item}\n")
+    file.close()
+
+
+read_todo_list()   
+
+#  Function prints 
 def print_numbered_list():
     for index, item in enumerate(todo_list, 1):
         item = item.replace("\n", "")
@@ -37,16 +50,12 @@ def reset_txt_list():
     with open("todos.txt",'w') as file:
         pass
     #write new todo_list again in the file
-    file = open('todos.txt', 'w')  #update in the file    
-    for item in todo_list:
-        file.writelines(f"{item}\n")
-    file.close()
+    write_todo_list()  #update in the file    
 
 #welcome message and menu    
 print("Welcome in todo list program!\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* exit\n")
 
 while True:
-    #TODO: add better formated menu: name of list, menu of options
     #TODO: option to choose the list? next lesson
     user_choice = input("Type the command: ")
     
@@ -56,10 +65,8 @@ while True:
             new_todo = box + new_todo.upper()  #converts list into upper case
             todo_list.append(new_todo)  #update on the list
             
-            file = open('todos.txt', 'w')  #update in the file
-            for item in todo_list:
-                file.writelines(f"{item}\n")
-            file.close()
+            reset_txt_list()  #update in the file
+        
         elif user_choice[4:] == "":
             print("New Todo is not valid!")
 
