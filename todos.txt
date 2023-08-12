@@ -1,7 +1,3 @@
-[ ] GO FOR A LONG WALK
-[ ] TEST TASK TODOS
-[ ] NEW TASK
-[ ] TASK
-[ ] DFGHJK
-[ ] ZXCVBN
-[ ] DFGHJ
+[ ] WERTYU
+[ ] ZXCVBNM
+[ ] SDFGHJK

@@ -21,7 +21,7 @@ while True:
 
 #Function: print menu
 def print_menu():
-    print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* switch <list name>\n* cleanup\n* exit\n")
+    print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* switch <list name>\n* tick\n* exit\n")
 
 #Function: read todo list from txt file and formats it removing empty lines
 def read_todo_list(filepath):
@@ -126,9 +126,9 @@ while True:
                 print("Command not valid. Please type a number.")
 
 
-    elif user_choice.startswith("complete"):
+    elif user_choice.startswith("tick"):
         print_numbered_list()
-        complete_choice = input("Which todo would you like to complete? Number: ")
+        complete_choice = input("Which todo would you like to tick? Number: ")
         
         #check if user input is an integer
         complete_is_integer = complete_choice.isnumeric()
@@ -151,7 +151,7 @@ while True:
                         item = item.replace("[ ] ", "[x] ")
                         complete_choice = int(complete_choice)
                         todo_list[complete_choice - 1] = item  #update on the list
-                        #TODO: if complete move to the end?
+
                         complete_list = []
                         for item in todo_list:
                             if "[x]" in item:
@@ -160,7 +160,7 @@ while True:
                         
                         for item in complete_list:
                             todo_list.append(item)
-                            
+
                 reset_txt_list(filepath)
 
                 #print file
@@ -173,11 +173,22 @@ while True:
             print("Command not valid. Please type a number.")
 
     elif user_choice.startswith("cleanup"):
+        #FIXME: does not work at once, user must click tick few times
+        clean_list = []
         for item in todo_list:
-            if "[x]" in item:
-                todo_list.remove(item)
+            if item.startswith("[x]"):
+                pass
+            else:
+                clean_list.append(item)
+                #replace todo_list with clean_list to file
         
-        reset_txt_list(filepath)
+        with open(filepath,'w') as file:
+            pass
+        #write new clean_list again in the file
+        file = open(filepath, 'w')  #update in the file
+        for item in clean_list:
+            file.writelines(f"{item}\n")
+        file.close()     
 
         #print file
         print_list(filepath)
