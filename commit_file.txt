@@ -1,5 +1,0 @@
-"- Fix bug: new items added on the top
-- New Function: new arg in reset_txt_list which allows function
-  to perform on different data sources
-  
-"

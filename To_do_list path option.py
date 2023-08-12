@@ -75,7 +75,7 @@ while True:
         if user_choice[4:] != "":
             new_todo = user_choice[4:]
             new_todo = box + new_todo.upper()  #converts list into upper case
-            todo_list.insert(0, new_todo)  #update on the list
+            todo_list.insert(0, new_todo)  #insert on the top of the list
             
             reset_txt_list(filepath, todo_list)  #update in the file
         
