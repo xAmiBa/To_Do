@@ -1,2 +1,5 @@
-- completed tasks move to the end of list
-- 
+"- completed tasks move to the end of the list
+- FixBug: cleanup command cleans the whole list not one by one item
+  * new variable clean_list created
+  * ticked items append to new variable
+  * new variable is written in the txt file"
