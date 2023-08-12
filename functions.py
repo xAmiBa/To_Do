@@ -1,3 +1,5 @@
+from global_variables import todo_list
+
 #Function: print menu
 def print_menu():
     print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* switch <list name>\n* tick\n* exit\n")
@@ -13,14 +15,16 @@ def read_todo_list(filepath):
 
     file.close()  
 
-read_todo_list(filepath)   
-
 #  Function prints 
-def print_numbered_list():
+def print_numbered_list(filepath):
+    file = open(filepath, 'r')
+    todo_list = file.readlines() #update from the file
+    
     for index, item in enumerate(todo_list, 1):
         item = item.replace("\n", "")
         print(f"({index})  {item}")
-    print("")
+    file.close()
+    print("\n")
 
 def print_list(filepath):
     file = open(filepath, 'r')

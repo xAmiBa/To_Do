@@ -1,6 +1,6 @@
-[ ] READ
 [ ] LAUGH
 [ ] COOK MEAL
 [ ] RUN
-[ ] CLEAN
 [ ] WASH
+[x] CLEAN
+[x] READ

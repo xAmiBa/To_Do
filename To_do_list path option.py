@@ -1,7 +1,8 @@
 
-#TODO: list comprehension improvement
+from functions import print_menu, read_todo_list, print_numbered_list, print_list, reset_txt_list
+from global_variables import todo_list
 
-todo_list = []  #stored list
+# todo_list = []  #stored list
 box = "[ ] "
 
 #welcome message and menu    
@@ -16,55 +17,12 @@ while True:
         break
             
     except OSError as error_message:
-        print(f"\nThis file does not exist: {error_message}! Please try again!")
+        print(f"\nThis file does not exist: {error_message}! Please try again!")  
 
-
-#Function: print menu
-def print_menu():
-    print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* switch <list name>\n* tick\n* exit\n")
-
-#Function: read todo list from txt file and formats it removing empty lines
-def read_todo_list(filepath):
-    with open(filepath, 'r') as file:
-        todo_list_open = file.readlines()  #update from the file
-
-    for item in todo_list_open:
-        item = item.replace("\n", "")
-        todo_list.append(item)
-
-    file.close()  
-
-#  Function prints 
-def print_numbered_list():
-    for index, item in enumerate(todo_list, 1):
-        item = item.replace("\n", "")
-        print(f"({index})  {item}")
-    print("")
-
-def print_list(filepath):
-    file = open(filepath, 'r')
-    todo_list = file.readlines() #update from the file
-    file.close()
-
-    print("\nMY TODO LIST:")
-    for item in todo_list:
-        item = item.replace("\n", "")
-        print(item) 
-    print("")
-
-def reset_txt_list(filepath, source):
-    #clear the txt file
-    with open(filepath,'w') as file:
-        pass
-    #write new todo_list again in the file
-    file = open(filepath, 'w')  #update in the file
-    for item in source:
-        file.writelines(f"{item}\n")
-    file.close()  #update in the file    
-
+print_menu()
 read_todo_list(filepath)   
 print_list(filepath)
-print_menu()
+
 
 while True:
     user_choice = input("Type the command: ")
@@ -91,7 +49,7 @@ while True:
             print("Command is not valid! Type just 'edit'")
         
         else:
-            print_numbered_list()
+            print_numbered_list(filepath)
 
             #user choose which item
             choice_edit = input("Which item would you like to edit? Number: ")
@@ -126,7 +84,7 @@ while True:
 
 
     elif user_choice.startswith("tick"):
-        print_numbered_list()
+        print_numbered_list(filepath)
         complete_choice = input("Which todo would you like to tick? Number: ")
         
         #check if user input is an integer
