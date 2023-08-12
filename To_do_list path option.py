@@ -1,6 +1,6 @@
 
-from functions import print_menu, read_todo_list, print_numbered_list, print_list, reset_txt_list
-from global_variables import todo_list
+from modules.functions import print_menu, read_todo_list, print_numbered_list, print_list, reset_txt_list
+from modules.global_variables import todo_list
 
 # todo_list = []  #stored list
 box = "[ ] "

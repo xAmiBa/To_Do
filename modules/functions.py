@@ -1,4 +1,4 @@
-from global_variables import todo_list
+from modules.global_variables import todo_list
 
 #Function: print menu
 def print_menu():
