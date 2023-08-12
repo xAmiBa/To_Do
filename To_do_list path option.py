@@ -1,55 +1,76 @@
 
 #TODO: list comprehension improvement
+#import os   #operating system dependent functionality. Interaction with file path.
 
-todo_list = [] 
+todo_list = []  #stored list
 box = "[ ] "
-#add list to todo_list temporary variable so next time when program run it reads
-#stored list
 
-#Fucntion: read todo list from txt file and formats it removing empty lines
-def read_list():
-    with open('todos.txt', 'r') as file:
-        todo_list_open = file.readlines() #update from the file
+#welcome message and menu    
+print("Welcome in todo list program!")
+
+while True:
+    try: 
+        filepath = input("Which list you would like to work on? Type in the name of the file: ")
+        user_file = open(filepath, 'r')
+        user_file.close()
+        break
+            
+    except OSError as error_message:
+        print(f"\nThis file does not exist: {error_message}! Please try again!")
+
+print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* exit\n")
+
+#filepath = "todos.txt"
+
+#Function: read todo list from txt file and formats it removing empty lines
+def read_todo_list(filepath):
+    with open(filepath, 'r') as file:
+        todo_list_open = file.readlines()  #update from the file
+
     for item in todo_list_open:
         item = item.replace("\n", "")
         todo_list.append(item)
+
     file.close()  
 
-#  Function: prints list with number next to todos
+#Function: list from variable 
+def write_todo_list(filepath):
+    file = open(filepath, 'w')  #update in the file
+    for item in todo_list:
+        file.writelines(f"{item}\n")
+    file.close()
+
+
+read_todo_list(filepath)   
+
+#  Function prints 
 def print_numbered_list():
     for index, item in enumerate(todo_list, 1):
         item = item.replace("\n", "")
         print(f"({index})  {item}")
     print("")
 
-#Function: prints list from the txt file
-def print_list():
-    file = open('todos.txt', 'r')
+def print_list(filepath):
+    file = open(filepath, 'r')
     todo_list = file.readlines() #update from the file
     file.close()
+
     print("\nMY TODO LIST:")
     for item in todo_list:
         item = item.replace("\n", "")
         print(item) 
     print("")
 
-#Function: erases txt file and writes updated list from variable into file
-def reset_list():
+def reset_txt_list(filepath):
     #clear the txt file
-    with open("todos.txt",'w') as file:
+    with open(filepath,'w') as file:
         pass
     #write new todo_list again in the file
-    file = open('todos.txt', 'w')
-    for item in todo_list:
-        file.writelines(f"{item}\n")
-    file.close()  
+    write_todo_list(filepath)  #update in the file    
 
-read_list()   
-
-#welcome message and menu    
-print("\nWelcome in todo list program!\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* exit\n")
 
 while True:
+    #TODO: option to choose the list? next lesson
     user_choice = input("Type the command: ")
     
     if user_choice.startswith("add"):
@@ -58,13 +79,13 @@ while True:
             new_todo = box + new_todo.upper()  #converts list into upper case
             todo_list.append(new_todo)  #update on the list
             
-            reset_list()  #update in the file
+            reset_txt_list(filepath)  #update in the file
         
         elif user_choice[4:] == "":
             print("New Todo is not valid!")
 
     elif user_choice.startswith("show"):
-        print_list()
+        print_list(filepath)
 
     elif user_choice.startswith("edit"):
         if user_choice != "edit":
@@ -93,10 +114,10 @@ while True:
                     replace_item = replace_item.upper()
                     todo_list[choice_edit] = todo_list[choice_edit][:4] + replace_item  #update on the list
 
-                    reset_list()
+                    reset_txt_list(filepath)
 
                     #print file
-                    print_list()
+                    print_list(filepath)
 
                 else:  #else if user input number is not correct, less than 1 or more than tosos available
                     print(f"Number is not correct. Type any number between 1 and {count + 1}.")
@@ -131,10 +152,10 @@ while True:
                         complete_choice = int(complete_choice)
                         todo_list[complete_choice - 1] = item  #update on the list
                 
-                reset_list()
+                reset_txt_list(filepath)
 
                 #print file
-                print_list()
+                print_list(filepath)
 
             else:  #else if user input number is not correct, less than 1 or more than tosos available
                 print(f"Number is not correct. Type any number between 1 and {count + 1}.")
@@ -152,10 +173,10 @@ while True:
                 if "[x]" in item:
                     todo_list.remove(item)
         
-        reset_list()
+        reset_txt_list(filepath)
 
         #print file
-        print_list()
+        print_list(filepath)
 
         break
 
