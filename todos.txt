@@ -1,7 +1,6 @@
-[ ] FINISH PROGRAM
-[ ] CLEAN ROOM
-[ ] WASH CLOTHES
-[ ] WASH DISHES
-[ ] NEW TASK
-[ ] WORK
-[ ] WORKOUT
+[ ] READ
+[ ] LAUGH
+[ ] COOK MEAL
+[ ] RUN
+[ ] CLEAN
+[ ] WASH

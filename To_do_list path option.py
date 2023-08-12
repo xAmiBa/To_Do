@@ -34,8 +34,6 @@ def read_todo_list(filepath):
 
     file.close()  
 
-read_todo_list(filepath)   
-
 #  Function prints 
 def print_numbered_list():
     for index, item in enumerate(todo_list, 1):
@@ -64,6 +62,7 @@ def reset_txt_list(filepath, source):
         file.writelines(f"{item}\n")
     file.close()  #update in the file    
 
+read_todo_list(filepath)   
 print_list(filepath)
 print_menu()
 
@@ -152,12 +151,14 @@ while True:
                         complete_choice = int(complete_choice)
                         todo_list[complete_choice - 1] = item  #update on the list
 
+                        # attach ticked tasks at the end
+                        
                         complete_list = []
                         for item in todo_list:
                             if "[x]" in item:
                                 complete_list.append(item)
                                 todo_list.remove(item)
-                        
+
                         for item in complete_list:
                             todo_list.append(item)
 
