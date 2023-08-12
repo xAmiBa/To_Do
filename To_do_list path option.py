@@ -54,13 +54,13 @@ def print_list(filepath):
         print(item) 
     print("")
 
-def reset_txt_list(filepath):
+def reset_txt_list(filepath, source):
     #clear the txt file
     with open(filepath,'w') as file:
         pass
     #write new todo_list again in the file
     file = open(filepath, 'w')  #update in the file
-    for item in todo_list:
+    for item in source:
         file.writelines(f"{item}\n")
     file.close()  #update in the file    
 
@@ -71,13 +71,13 @@ while True:
     user_choice = input("Type the command: ")
     
     if user_choice.startswith("add"):
-        reset_txt_list(filepath)
+        reset_txt_list(filepath, todo_list)
         if user_choice[4:] != "":
             new_todo = user_choice[4:]
             new_todo = box + new_todo.upper()  #converts list into upper case
-            todo_list.append(new_todo)  #update on the list
+            todo_list.insert(0, new_todo)  #update on the list
             
-            reset_txt_list(filepath)  #update in the file
+            reset_txt_list(filepath, todo_list)  #update in the file
         
         elif user_choice[4:] == "":
             print("New Todo is not valid!")
@@ -86,7 +86,7 @@ while True:
         print_list(filepath)
 
     elif user_choice.startswith("edit"):
-        reset_txt_list(filepath)
+        reset_txt_list(filepath, todo_list)
 
         if user_choice != "edit":
             print("Command is not valid! Type just 'edit'")
@@ -114,7 +114,7 @@ while True:
                     replace_item = replace_item.upper()
                     todo_list[choice_edit] = todo_list[choice_edit][:4] + replace_item  #update on the list
 
-                    reset_txt_list(filepath)
+                    reset_txt_list(filepath, todo_list)
 
                     #print file
                     print_list(filepath)
@@ -161,7 +161,7 @@ while True:
                         for item in complete_list:
                             todo_list.append(item)
 
-                reset_txt_list(filepath)
+                reset_txt_list(filepath, todo_list)
 
                 #print file
                 print_list(filepath)
@@ -173,7 +173,6 @@ while True:
             print("Command not valid. Please type a number.")
 
     elif user_choice.startswith("cleanup"):
-        #FIXME: does not work at once, user must click tick few times
         clean_list = []
         for item in todo_list:
             if item.startswith("[x]"):
@@ -182,14 +181,8 @@ while True:
                 clean_list.append(item)
                 #replace todo_list with clean_list to file
         
-        with open(filepath,'w') as file:
-            pass
-        #write new clean_list again in the file
-        file = open(filepath, 'w')  #update in the file
-        for item in clean_list:
-            file.writelines(f"{item}\n")
-        file.close()     
-
+        reset_txt_list(filepath, clean_list)
+    
         #print file
         print_list(filepath)
 
