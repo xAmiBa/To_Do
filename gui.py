@@ -1,4 +1,4 @@
-from modules.functions import reset_txt_list, print_list, print_numbered_list, print_menu 
+from modules.functions import reset_txt_list, print_list, print_numbered_list, print_menu, read_todo_list
 from modules.global_variables import todo_list, box
 import PySimpleGUI as sg
 
@@ -22,22 +22,25 @@ window = sg.Window('My ToDo App',
 # [filepath_input_box_label],
 # [filepath_input_box, filepath_open_button],
 
+filepath = "todos.txt"
+read_todo_list(filepath)   
+
 while True:
     user_choice, values = window.read()
     # filepath = filepath + ".txt"
     # print(filepath)
-    filepath = "todos.txt"
-    print(user_choice)
-    print(values)
 
-    if user_choice.startswith("add"):
+    print(user_choice) #button value
+    print(values)
+    
+
+    if user_choice == "add":
         reset_txt_list(filepath, todo_list)
-        values = values["todo"]
+        
         if values != "":
-            new_todo = values
-            new_todo = box + values.upper()  #converts list into upper case
+            values = values["todo"]
+            values = box + values.upper()  #converts list into upper case
             todo_list.insert(0, values)  #insert on the top of the list
-            
             reset_txt_list(filepath, todo_list)  #update in the file
         
     #     elif user_choice[4:] == "":
@@ -87,6 +90,9 @@ while True:
     #             print("Command not valid. Please type a number.")
 
 
+
+    if user_choice == sg.WIN_CLOSED:
+        break
 
 
 window.close()

@@ -1,2 +1,9 @@
-heheszki
-message
+[ ] NOTHING
+[ ] TAKE DOG OUT
+[ ] ADD NEW ONEE
+[ ] NEW TODO SECOND TIME
+[ ] DO SHOPPING
+[ ] DO LAUNDRY
+[ ] ONE MROE
+[ ] ANOTHER TODO
+[ ] ANOTHER ONE
