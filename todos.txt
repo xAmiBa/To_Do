@@ -1,6 +1,2 @@
-[ ] LAUGH
-[ ] COOK MEAL
-[ ] RUN
-[ ] WASH
-[x] CLEAN
-[x] READ
+heheszki
+message

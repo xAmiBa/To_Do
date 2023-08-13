@@ -1,9 +1,9 @@
 
 from modules.functions import print_menu, read_todo_list, print_numbered_list, print_list, reset_txt_list
-from modules.global_variables import todo_list
+from modules.global_variables import todo_list, box
 
 # todo_list = []  #stored list
-box = "[ ] "
+# box = "[ ] "
 
 #welcome message and menu    
 print("Welcome in todo list program!")
