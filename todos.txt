@@ -1,9 +1,8 @@
-[ ] NOTHING
-[ ] TAKE DOG OUT
+[ ] Gg
+[ ] clean room
+[ ] CVBN
+[ ] gg
+[ ] TWOJA MSTKA
 [ ] ADD NEW ONEE
-[ ] NEW TODO SECOND TIME
 [ ] DO SHOPPING
-[ ] DO LAUNDRY
-[ ] ONE MROE
-[ ] ANOTHER TODO
-[ ] ANOTHER ONE
+[x]do workout

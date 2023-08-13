@@ -56,7 +56,7 @@ while True:
 
             #check if user input is an integer
             edit_is_integer = choice_edit.isnumeric()
-            #count = 0
+            count = 0
 
             if edit_is_integer == True:
                 #number of lines in the file
