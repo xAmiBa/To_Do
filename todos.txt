@@ -1,3 +1,4 @@
-[ ] BUY A DRESS
-[ ] DO HOMEWORK
-[x] CLEAN TABLE
+[ ] Fix bugs
+[ ] Buy new keyboard
+[ ] Update IOS
+[ ] Add new functionality

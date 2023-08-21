@@ -46,11 +46,7 @@ column1 = [[todo_list_view]]
 column2 = [
     [input_box_label],
     [input_box],
-    [todo_add_button],
-    [edit_button],
-    [tick_button],
-    [cleanup_button],
-    #[switch_button1]
+    [todo_add_button, edit_button, tick_button, cleanup_button]
     ]
 
 layout = [[sg.Column(column1), sg.Column(column2)]]
