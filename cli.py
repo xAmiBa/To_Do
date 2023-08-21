@@ -2,19 +2,33 @@
 from modules.functions import print_menu, read_todo_list, print_numbered_list, print_list, reset_txt_list
 from modules.global_variables import todo_list, box
 
-# todo_list = []  #stored list
-# box = "[ ] "
-
 #welcome message and menu    
 print("Welcome in todo list program!")
 
 while True:
     try: 
-        filepath = input("Which list you would like to work on? Type in the name of the file. For example \"list1\": ")
+        filepath = input("Which list you would like to work on?\nType in the name of the list.\nIf you would like to create a new list, type 'new list' <name>: ")
         filepath = filepath + ".txt"
-        user_file = open(filepath, 'r')
-        user_file.close()
-        break
+        if filepath.startswith("new list"):
+            todo_list = []  #earease todolist
+            new_list = filepath[8:]
+            print(f"Your new list is called: \"{new_list}\".")
+            with open(new_list, 'w') as new_todo_list:   
+                new_todo_list.write   #create new file
+
+            filepath = new_list
+            user_file = open(filepath, 'r')
+            user_file.close()
+            print(f"You are working on \"{filepath}\" list.")
+
+            read_todo_list(filepath)
+            print_list(filepath)
+            break
+
+        else:    
+            user_file = open(filepath, 'r')
+            user_file.close()
+            break
             
     except OSError as error_message:
         print(f"\nThis file does not exist: {error_message}! Please try again!")  
@@ -176,7 +190,28 @@ while True:
                 except OSError as error_message:
                     print(f"\nThis file does not exist: {error_message}! Please try again!")
                     break
-       
+    
+    elif user_choice.startswith("new list"):
+        if user_choice[8:] != "":
+            todo_list = []  #earease todolist
+            new_list = user_choice[9:]
+            print(f"Your new list is called: \"{new_list}\".")
+            new_list = str(new_list) + ".txt"
+            with open(new_list, 'w') as new_todo_list:   
+                new_todo_list.write   #create new file
+
+            filepath = new_list
+            user_file = open(filepath, 'r')
+            user_file.close()
+            print(f"You are working on \"{filepath}\" list.")
+
+            read_todo_list(filepath)
+            print_list(filepath)
+
+        else:
+            print("Please add your new list name!")
+
+
     elif user_choice.startswith("exit"):
         break
     
