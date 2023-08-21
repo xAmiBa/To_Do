@@ -5,21 +5,31 @@ Welcome to the ToDo List program! This program provides a command-line interface
 ## Functionalities
 
 ### CLI Version
+![](https://github.com/xAmiBa/To_Do/blob/main/screenshots/Screenshot%202023-08-21%20at%2023.38.48.png)
 1. **Add**: Add a new task to the list.
 2. **Tick**: Mark a task as completed.
-3. **Edit**: Edit an existing task.
-4. **Show**: Display the current tasks in the list.
-5. **Switch**: Switch between different to-do lists.
-6. **New List**: Create a new to-do list.
-7. **Cleanup**: Remove completed tasks from the list.
-8. **Menu**: Display the menu options.
-9. **Exit**: Exit the program.
+
+![](https://github.com/xAmiBa/To_Do/blob/main/screenshots/Screenshot%202023-08-21%20at%2023.39.13.png)
+
+4. **Edit**: Edit an existing task.
+5. **Show**: Display the current tasks in the list.
+6. **Switch**: Switch between different to-do lists.
+7. **New List**: Create a new to-do list.
+8. **Cleanup**: Remove completed tasks from the list.
+9. **Menu**: Display the menu options.
+10. **Exit**: Exit the program.
 
 ### GUI Version
+![image](https://github.com/xAmiBa/To_Do/blob/main/screenshots/Screenshot%202023-08-21%20at%2023.37.55.png)
 1. **Add**: Add a new task to the list.
 2. **Tick**: Mark a task as completed.
-3. **Edit**: Edit an existing task.
-4. **Cleanup**: Remove completed tasks from the list.
+   
+![](https://github.com/xAmiBa/To_Do/blob/main/screenshots/Screenshot%202023-08-21%20at%2023.38.03.png)
+
+4. **Edit**: Edit an existing task.
+5. **Cleanup**: Remove completed tasks from the list.
+
+![](https://github.com/xAmiBa/To_Do/blob/main/screenshots/Screenshot%202023-08-21%20at%2023.38.13.png)
 
 ## Libraries Used
 
@@ -49,16 +59,14 @@ The program utilizes the following libraries:
 In the process of building this ToDo List program, I gained valuable experience in several areas:
 
 - Utilizing Python to create a functional command-line application and graphical user interface (GUI) program.
-- Designing modular code by creating separate modules for functions and variables.
-- Implementing functions to encapsulate specific tasks, such as printing menus, reading and writing to-do lists, and more.
+- Designing **modular code by creating separate modules for functions and variables**.
+- Implementing **functions** to encapsulate specific tasks, such as printing menus, reading and writing to-do lists, and more.
 - Understanding the benefits of using functions, such as code reusability and better organization.
-- Creating and using global variables to maintain state across different parts of the program.
+- Creating and using **global variables** to maintain state across different parts of the program.
 - Learning how to handle user input and create interactive menu systems.
-- Incorporating file handling operations to store and retrieve task data in text files.
-- Enhancing my problem-solving skills by addressing user input validation and managing program flow.
-- Developing a graphical user interface (GUI) using the PySimpleGUI library.
-- Exploring different ways of structuring code and maintaining modularity.
-- Gaining insights into software development practices and code organization for real-world applications.
+- Incorporating **file handling operations** to store and retrieve task data in **text files**.
+- Enhancing my problem-solving skills by addressing **user input validation** and managing program flow.
+- Developing a graphical user interface (GUI) using the **PySimpleGUI library**.
 
 
 ## Future Developments
