@@ -114,24 +114,27 @@ while True:
             pass 
 
     elif user_choice == "tick":
-        reset_txt_list(filepath, todo_list)        
+        if values["todo"] != "":
+            #FIXME: if tick clicked on its own program exits
+            reset_txt_list(filepath, todo_list)        
 
-        choice_tick = values["list_view"][0] #we point to "edit" key for the corresponding value and number of choice
-        check_box = "[x]"
-        index = todo_list.index(choice_tick)
-        todo_list[index] = "[x]" + choice_tick[4:] #only stuff after the box
-        
-        complete_list = []
-        for item in todo_list:
-            if "[x]" in item:
-                complete_list.append(item)
-                todo_list.remove(item)
+            choice_tick = values["list_view"][0] #we point to "edit" key for the corresponding value and number of choice
+            index = todo_list.index(choice_tick)
+            todo_list[index] = "[x]" + choice_tick[3:] #only stuff after the box
+            
+            complete_list = []
+            for item in todo_list:
+                if "[x] " in item:
+                    complete_list.append(item)
+                    todo_list.remove(item)
 
-        for item in complete_list:
-            todo_list.append(item)
+            for item in complete_list:
+                todo_list.append(item)
 
-        reset_txt_list(filepath, todo_list)
-        window["list_view"].update(todo_list)
+            reset_txt_list(filepath, todo_list)
+            window["list_view"].update(todo_list)
+        else:
+            pass
 
     elif user_choice == "clean_list":
         reset_txt_list(filepath, todo_list)        
@@ -150,9 +153,11 @@ while True:
         window["list_view"].update(todo_list)
 
     elif user_choice == "swich_button":
+        #FIXME: button doesn open new window, why?
         user_click, new_filepath = switch_window.read()
 
     if user_choice == sg.WIN_CLOSED:
         break
 
 window.close()
+
