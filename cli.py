@@ -140,7 +140,8 @@ while True:
                 clean_list.append(item)
                 #replace todo_list with clean_list to file
         
-        reset_txt_list(filepath, clean_list)
+        todo_list = clean_list
+        reset_txt_list(filepath, todo_list)
     
         #print file
         print_list(filepath)

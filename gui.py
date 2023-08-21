@@ -7,7 +7,6 @@ sg.set_options(font=("Lato", 14))
 filepath = "todos.txt"
 read_todo_list(filepath) 
 
-
 # NEW TO DO FUNCTIONALITY
 input_box_label = sg.Text("Type in a todo")
 input_box = sg.InputText(tooltip="Enter todo",
@@ -27,17 +26,11 @@ tick_button = sg.Button("\u2713", key="tick")
 #  CLEANUP FUNCTIONALITY
 cleanup_button = sg.Button("cleanup", key="clean_list")
 
-# CHOOSE FILEPATH
-# filepath_input_box_label = sg.Text("Type in a name of your list")
-# filepath_input_box = sg.InputText(tooltip="Enter the name of your todo list",
-#                                   key="filepath")
-# filepath_open_button = sg.Button("open")
-
 # SWITCH FILEPATH
 switch_box_label = sg.Text("Type in list name. If new list, type \"new\":")
 
 switch_box = sg.InputText(tooltip="Entera new file name",
-                          key="new_filepath")
+                          key="new_file")
 switch_button1 = sg.Button("switch list", key="switch_button")
 switch_button2 = sg.Button("switch", key = "switch_final")
 
@@ -57,24 +50,20 @@ column2 = [
     [edit_button],
     [tick_button],
     [cleanup_button],
-    [switch_button1]
+    #[switch_button1]
     ]
 
 layout = [[sg.Column(column1), sg.Column(column2)]]
 
 window = sg.Window('My ToDo App', layout)
-# [filepath_input_box_label],
-# [filepath_input_box, filepath_open_button],  
 
-switch_window = sg.Window("switch ToDo list",
-                          [[switch_box_label],
-                           [switch_box],
-                           [switch_button2]])
+# switch_window = sg.Window("switch ToDo list",
+#                           [[switch_box_label],
+#                            [switch_box],
+#                            [switch_button2]])
 
 while True:
     user_choice, values = window.read()
-    # filepath = filepath + ".txt"
-    # print(filepath)
 
     print(user_choice) #button value / key
     print(values) #all values off all buttons/keys
@@ -114,8 +103,7 @@ while True:
             pass 
 
     elif user_choice == "tick":
-        if values["todo"] != "":
-            #FIXME: if tick clicked on its own program exits
+        if values["list_view"] != "":
             reset_txt_list(filepath, todo_list)        
 
             choice_tick = values["list_view"][0] #we point to "edit" key for the corresponding value and number of choice
@@ -152,12 +140,23 @@ while True:
     
         window["list_view"].update(todo_list)
 
-    elif user_choice == "swich_button":
-        #FIXME: button doesn open new window, why?
-        user_click, new_filepath = switch_window.read()
+    # elif user_choice == "switch_button":
+    #     user_click, new_filepath = switch_window.read()
+    #     print(user_click) #button value / key
+    #     print(new_filepath) #all values off all buttons/keys
 
+    #     if user_click == "switch_final":
+    #         new_filepath = new_filepath["new_file"]
+    #         filepath = str(new_filepath) + ".txt"
+    #         todo_list = []  #reset todo_list stored in the program
+    #         read_todo_list(filepath) #write new todolist from txt file into the program
+    #         switch_window.close()
+
+    #     window["list_view"].update(todo_list)
+
+    
     if user_choice == sg.WIN_CLOSED:
         break
 
-window.close()
+
 

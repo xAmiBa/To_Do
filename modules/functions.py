@@ -2,7 +2,7 @@ from modules.global_variables import todo_list
 
 #Function: print menu
 def print_menu():
-    print("\nMenu:\n* add <your todo>\n* show\n* edit\n* complete\n* menu\n* switch <list name>\n* tick\n* exit\n")
+    print("\nMenu:\n* add <your todo>\n* tick\n* edit\n* show\n* switch <list name>\n* cleanup\n* menu\n* exit\n")
 
 #Function: read todo list from txt file and formats it removing empty lines
 def read_todo_list(filepath):
